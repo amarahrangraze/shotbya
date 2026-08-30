@@ -74,9 +74,12 @@ window.SBA_GA_ID = ''; /* e.g. 'G-XXXXXXXXXX' — leave empty to disable analyti
    ========================================================= */
 @font-face{
     font-family:"Amsterdam Three";
-    src:url("assets/fonts/AmsterdamThree.woff2") format("woff2"),
-        url("assets/fonts/AmsterdamThree.woff") format("woff"),
-        url("assets/fonts/AmsterdamThree.ttf") format("truetype");
+    /* The file you uploaded is named "AmsterdamThree.woff2.ttf" (a .ttf with a
+       doubled extension) — listed first so it loads. If you later rename it to a
+       clean AmsterdamThree.ttf / .woff2, those are listed as fallbacks. */
+    src:url("assets/fonts/AmsterdamThree.woff2.ttf") format("truetype"),
+        url("assets/fonts/AmsterdamThree.ttf") format("truetype"),
+        url("assets/fonts/AmsterdamThree.woff2") format("woff2");
     font-weight:normal; font-style:normal; font-display:swap;
 }
 
@@ -114,6 +117,10 @@ window.SBA_GA_ID = ''; /* e.g. 'G-XXXXXXXXXX' — leave empty to disable analyti
 
 *{ margin:0; padding:0; box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
+/* prevent any element (footer curve, arch heart/flowers, hero overhang)
+   from pushing the page wider than the screen — that horizontal overflow
+   is what made mobile browsers zoom the whole page out to fit. */
+html, body{ overflow-x:hidden; max-width:100%; }
 
 body{
     background:var(--bg);
@@ -187,13 +194,7 @@ nav.bar .nav-links a{ font-family:var(--font-sub); font-size:13.5px; font-weight
 nav.bar .nav-links a:hover,
 nav.bar .nav-links a.active{ opacity:1; text-decoration:underline; text-underline-offset:5px; }
 
-.nav-account{
-    display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
-    border:1.5px solid rgba(242,239,230,.85); color:var(--ink-on-dark); background:rgba(10,16,13,.12);
-    transition:.2s ease; flex-shrink:0;
-}
-.nav-account:hover{ background:var(--ink-on-dark); color:var(--dark-red); }
-.nav-account svg{ width:20px; height:20px; }
+.nav-account{ display:none; } /* account button removed per request */
 
 /* mobile slide-out menu */
 .mobile-menu{
@@ -305,7 +306,9 @@ section.tight{ padding:34px 0; }
 .collage .ph img{ width:100%; height:100%; object-fit:cover; }
 .collage .ph-back{ width:52%; aspect-ratio:3/4; top:0; right:4%; transform:rotate(4deg); z-index:1; }
 .collage .ph-front{ width:52%; aspect-ratio:4/5; bottom:0; left:2%; transform:rotate(-5deg); z-index:2; }
-.collage .heart{ position:absolute; right:2%; bottom:6%; width:130px; color:var(--dark-red); z-index:0; opacity:.85; }
+.collage .heart{ position:absolute; right:2%; bottom:6%; width:130px; color:var(--dark-red); z-index:0; opacity:.9; transform:rotate(38deg); }
+.collage .heart img{ width:100%; height:auto; }
+.collage .heart svg{ width:100%; height:auto; }
 
 .work-copy h2{ font-size:clamp(36px,5vw,54px); line-height:1; }
 .work-copy p{ font-family:var(--font-sub); color:var(--ink-soft); font-size:16px; margin:16px 0 26px; font-weight:300; max-width:46ch; }
@@ -463,7 +466,7 @@ footer.site-footer::before{
 .footer-logo .brand-fallback{ font-family:var(--font-display); font-size:44px; color:var(--stone); }
 .footer-cols{ position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:center; gap:44px 56px; margin:36px 0 6px; }
 .footer-col h4{ font-family:var(--font-sub); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--stone); margin-bottom:12px; }
-.footer-col .rule{ width:64px; height:2px; background:rgba(242,239,230,.55); margin:0 auto 14px; }
+.footer-col .rule{ width:min(220px,80vw); height:2px; background:rgba(242,239,230,.55); margin:0 auto 14px; }
 .footer-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
 .footer-col a, .footer-col span.line{ font-family:var(--font-sub); color:#f0dede; font-size:14px; transition:color .2s ease; }
 .footer-col a:hover{ color:#fff; }
@@ -476,20 +479,9 @@ footer.site-footer::before{
 .lightbox img{ max-width:92vw; max-height:85vh; border-radius:12px; }
 .lightbox .close{ position:absolute; top:22px; right:28px; color:#fff; font-size:38px; cursor:pointer; line-height:1; background:none; border:none; }
 
-/* =========================== BOOKING POPUP =========================== */
-.booking-overlay{ display:none; position:fixed; inset:0; z-index:2100; background:rgba(10,16,13,.55); align-items:center; justify-content:center; padding:20px; }
-.booking-overlay.show{ display:flex; }
-.booking-modal{ background:var(--bg-pill); border-radius:var(--radius-card); border:1px solid var(--line); max-width:440px; width:100%; max-height:90vh; overflow-y:auto; padding:32px; position:relative; box-shadow:0 24px 60px rgba(0,0,0,.3); }
-.booking-close{ position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--bg-pill); font-size:20px; line-height:1; cursor:pointer; color:var(--ink); }
-.booking-close:hover{ background:var(--dark-red); color:#fff; border-color:var(--dark-red); }
-.booking-modal h3{ font-size:34px; line-height:1; margin-bottom:6px; }
-.booking-modal .booking-sub{ font-family:var(--font-sub); color:var(--ink-soft); font-size:14px; margin-bottom:22px; font-weight:300; }
+/* =========================== CONTACT WHATSAPP BUTTON =========================== */
 .booking-actions{ display:flex; flex-direction:column; gap:10px; margin-top:8px; }
 .booking-btn{ display:flex; align-items:center; justify-content:center; gap:8px; border-radius:14px; padding:14px 20px; font-family:var(--font-sub); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; transition:.2s ease; }
-.booking-btn.email{ background:var(--dark-red); color:#fff; }
-.booking-btn.email:hover{ background:var(--maroon); }
-.booking-btn.email.sent{ background:#27ae60; cursor:default; }
-.booking-btn.email:disabled{ opacity:.75; cursor:default; }
 .booking-btn.whatsapp{ background:#25D366; color:#0b1f12; }
 .booking-btn.whatsapp:hover{ background:#1ebc59; }
 .booking-btn svg{ width:18px; height:18px; flex-shrink:0; }
@@ -602,7 +594,7 @@ footer.site-footer::before{
         <li><a href="#contact" data-nav data-menu-link>Contact</a></li>
     </ul>
     <div class="menu-media">
-        <img src="assets/logo.png" alt="Shot by A" onerror="this.onerror=null; this.src='assets/logo-maroon-transparent.png';">
+        <img src="assets/logo2.png" alt="Shot by A" onerror="this.onerror=null; this.src='assets/logo-maroon-transparent.png';">
     </div>
     <div class="menu-social">
         <a href="https://www.instagram.com/shotbya_photography" target="_blank" rel="noopener">Instagram</a>
@@ -627,11 +619,7 @@ footer.site-footer::before{
                  onerror="this.onerror=null; this.src='assets/logo-cream-transparent.png';">
             <span class="brand-fallback" style="display:none;">Shot by A</span>
         </a>
-        <div class="nav-right">
-            <a href="#book" class="nav-account" data-open-booking aria-label="Book a shoot" title="Book a shoot">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round"/></svg>
-            </a>
-        </div>
+        <div class="nav-right"><!-- account button removed; empty cell keeps the logo centered --></div>
     </nav>
 </div>
 
@@ -673,7 +661,10 @@ footer.site-footer::before{
         <div class="wrap">
             <div class="two-col">
                 <div class="collage shieldable" aria-hidden="false">
-                    <svg class="heart"><use href="#i-heart"/></svg>
+                    <span class="heart">
+                        <img src="assets/heart.png" alt=""
+                             onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 200 180\' style=\'width:100%;height:auto\'><use href=&quot;#i-heart&quot;/></svg>';">
+                    </span>
                     <div class="ph ph-back"><img src="assets/work-2.jpg" alt="Recent work by Shot by A" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                     <div class="ph ph-front"><img src="assets/work-1.jpg" alt="Recent work by Shot by A" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                 </div>
@@ -904,15 +895,18 @@ footer.site-footer::before{
             <div class="contact-grid">
                 <div class="contact-card">
                     <span class="eyebrow">Send a message</span>
+                    <p style="font-family:var(--font-sub); color:var(--ink-soft); font-size:14.5px; font-weight:300; margin-bottom:18px;">
+                        Pop in your name and a quick note about your shoot — the button opens a WhatsApp chat with your message ready to send.
+                    </p>
                     <div class="field"><label for="cName">Your name</label><input type="text" id="cName" placeholder="Jane Doe" autocomplete="name"></div>
-                    <div class="field"><label for="cEmail">Your email</label><input type="email" id="cEmail" placeholder="jane@email.com" autocomplete="email"></div>
-                    <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" rows="5" placeholder="Date, location, and what you'd like covered..."></textarea></div>
-                    <p class="field-err" id="cErr"></p>
+                    <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" rows="4" placeholder="Date, location, and what you'd like covered..."></textarea></div>
                     <div class="booking-actions">
-                        <button class="booking-btn email" id="cEmailBtn"><span id="cEmailLabel">Send message</span></button>
-                        <button class="booking-btn whatsapp" id="cWaBtn">Message on WhatsApp</button>
+                        <button class="booking-btn whatsapp" id="cWaBtn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.8 8.8 0 0 0 12 4a8.8 8.8 0 0 0-7.6 13.2L3 21l3.9-1.3A8.8 8.8 0 0 0 12 20a8.8 8.8 0 0 0 5.6-15.7zM12 18.3c-1.4 0-2.7-.4-3.9-1.1l-.3-.2-2.7.9.9-2.6-.2-.3A6.9 6.9 0 0 1 12 5.7a6.9 6.9 0 0 1 0 12.6zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.2-.3.2-.5.1-.6-.3-1.2-.7-1.7-1.2-.4-.4-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.2.2-.3.1-.5l-.6-1.4c-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.4.1-.5.2-.2.2-.7.7-.7 1.6 0 .9.7 1.9.8 2 .1.1 1.4 2.1 3.3 2.9 1.9.8 1.9.5 2.3.5.3 0 1.1-.4 1.2-.9.2-.4.2-.8.1-.9-.1-.1-.2-.2-.4-.3z"/></svg>
+                            Message on WhatsApp
+                        </button>
                     </div>
-                    <p class="booking-note">Sending adds you to the Shot by A mailing list for booking updates. WhatsApp opens a chat directly.</p>
+                    <p class="booking-note">Prefer email? Reach me at <a href="mailto:amarah.rangraze@gmail.com" style="color:var(--dark-red); font-weight:600;">amarah.rangraze@gmail.com</a>.</p>
                 </div>
                 <div class="contact-card">
                     <span class="eyebrow">Details</span>
@@ -981,36 +975,11 @@ footer.site-footer::before{
     <img id="lightbox-img" alt="">
 </div>
 
-<!-- BOOKING POPUP -->
-<div class="booking-overlay" id="bookingOverlay">
-    <div class="booking-modal">
-        <button class="booking-close" id="bookingClose" aria-label="Close">&times;</button>
-        <h3>Book a shoot</h3>
-        <p class="booking-sub">Tell me a bit about what you need, then send it however suits you.</p>
-        <div class="field"><label for="bName">Your name</label><input type="text" id="bName" placeholder="Jane Doe" autocomplete="name"></div>
-        <div class="field"><label for="bEmail">Your email</label><input type="email" id="bEmail" placeholder="jane@email.com" autocomplete="email"></div>
-        <div class="field"><label for="bMsg">Message</label><textarea id="bMsg" rows="4" placeholder="Date, location, and what you'd like covered..."></textarea></div>
-        <p class="field-err" id="bErr"></p>
-        <div class="booking-actions">
-            <button class="booking-btn email" id="bEmailBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 7 9-7" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
-                <span id="bEmailLabel">Send message</span>
-            </button>
-            <button class="booking-btn whatsapp" id="bWaBtn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.8 8.8 0 0 0 12 4a8.8 8.8 0 0 0-7.6 13.2L3 21l3.9-1.3A8.8 8.8 0 0 0 12 20a8.8 8.8 0 0 0 5.6-15.7zM12 18.3c-1.4 0-2.7-.4-3.9-1.1l-.3-.2-2.7.9.9-2.6-.2-.3A6.9 6.9 0 0 1 12 5.7a6.9 6.9 0 0 1 0 12.6zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.2-.3.2-.5.1-.6-.3-1.2-.7-1.7-1.2-.4-.4-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.2.2-.3.1-.5l-.6-1.4c-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.4.1-.5.2-.2.2-.7.7-.7 1.6 0 .9.7 1.9.8 2 .1.1 1.4 2.1 3.3 2.9 1.9.8 1.9.5 2.3.5.3 0 1.1-.4 1.2-.9.2-.4.2-.8.1-.9-.1-.1-.2-.2-.4-.3z"/></svg>
-                Message on WhatsApp
-            </button>
-        </div>
-        <p class="booking-note">Sending your message adds you to the Shot by A mailing list for booking updates. WhatsApp opens a chat directly.</p>
-    </div>
-</div>
-
 <script>
 /* =========================================================
-   CONFIG — update these three for go-live
+   CONFIG
    ========================================================= */
 const WHATSAPP_NUMBER = '27844456657'; /* 084 445 6657 → SA intl (27) + drop leading 0. Verify WhatsApp-enabled. */
-const BREVO_ACTION_URL = '';           /* paste the Brevo form action URL; empty = falls back to mailto */
 const CONTACT_EMAIL = 'amarah.rangraze@gmail.com';
 
 /* Gallery images: add/remove filenames freely. Any that fail to load
@@ -1145,71 +1114,38 @@ function restartTesti(){ clearInterval(tTimer); tTimer = setInterval(nextTesti, 
 renderTesti(0); restartTesti();
 
 /* =========================================================
-   BOOKING POPUP + CONTACT FORM  (shared submit logic)
+   BOOK A SHOOT → WhatsApp
+   Every "Book a shoot" / "Enquire & book" button (marked with
+   data-open-booking) opens a WhatsApp chat with Amarah, with a
+   friendly pre-filled message. No form, no modal.
    ========================================================= */
-const bookingOverlay = document.getElementById('bookingOverlay');
-document.getElementById('bookingClose').addEventListener('click', closeBooking);
-bookingOverlay.addEventListener('click', e=>{ if(e.target===bookingOverlay) closeBooking(); });
-document.addEventListener('keydown', e=>{
-    if(e.key==='Escape'){ closeBooking(); lightbox.classList.remove('show'); closeMenuFn(); }
-});
+function openWhatsApp(prefill){
+    const text = prefill || "Hi Amarah, I'd like to book a shoot with Shot by A.";
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+}
 document.querySelectorAll('[data-open-booking]').forEach(btn=>{
-    btn.addEventListener('click', e=>{ e.preventDefault(); openBooking(); });
+    btn.addEventListener('click', e=>{ e.preventDefault(); openWhatsApp(); });
 });
-function openBooking(){ bookingOverlay.classList.add('show'); document.getElementById('bName').focus(); }
-function closeBooking(){ bookingOverlay.classList.remove('show'); }
 
-function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-/* Submit silently to Brevo via hidden iframe (no page nav, no mail app).
-   If BREVO_ACTION_URL is empty, falls back to opening a mailto draft. */
-function submitLead(fields){
-    return new Promise((resolve)=>{
-        if(!BREVO_ACTION_URL){
-            const body = encodeURIComponent((fields.MESSAGE||'') + '\n\nFrom: ' + (fields.EMAIL||''));
-            window.location.href = 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('Shot by A — booking enquiry')+'&body='+body;
-            setTimeout(resolve, 300); return;
-        }
-        const name = 'lead-'+Date.now();
-        const iframe = document.createElement('iframe'); iframe.name=name; iframe.style.display='none'; document.body.appendChild(iframe);
-        const form = document.createElement('form'); form.method='POST'; form.action=BREVO_ACTION_URL; form.target=name; form.style.display='none';
-        const data = {...fields, email_address_check:'', locale:'en'};
-        Object.keys(data).forEach(k=>{ const i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=data[k]; form.appendChild(i); });
-        document.body.appendChild(form); form.submit();
-        setTimeout(()=>{ resolve(); form.remove(); iframe.remove(); }, 900);
-    });
-}
-
-/* wire a name/email/message trio + its two buttons */
-function wireForm(cfg){
-    const name=document.getElementById(cfg.name), email=document.getElementById(cfg.email),
-          msg=document.getElementById(cfg.msg), err=document.getElementById(cfg.err),
-          emailBtn=document.getElementById(cfg.emailBtn), label=document.getElementById(cfg.label),
-          waBtn=document.getElementById(cfg.waBtn);
+/* Contact page: the two buttons both go to WhatsApp too (form removed).
+   Prefill uses whatever the visitor typed in the message box, if present. */
+(function(){
+    const msg = document.getElementById('cMsg');
+    const name = document.getElementById('cName');
     function buildText(){
-        const n=name.value.trim(), m=msg.value.trim();
-        let t = m || "Hi Shot by A, I'd like to book a shoot.";
-        if(n) t = `Hi Shot by A, I'm ${n}. ${m || "I'd like to book a shoot."}`;
-        return t;
+        const n = name ? name.value.trim() : '';
+        const m = msg ? msg.value.trim() : '';
+        let t = m || "I'd like to book a shoot with Shot by A.";
+        return n ? `Hi Amarah, I'm ${n}. ${t}` : `Hi Amarah, ${t}`;
     }
-    emailBtn.addEventListener('click', async ()=>{
-        err.textContent='';
-        if(!name.value.trim()){ err.textContent='Please enter your name.'; name.focus(); return; }
-        if(!isValidEmail(email.value.trim())){ err.textContent='Please enter a valid email address.'; email.focus(); return; }
-        if(!msg.value.trim()){ err.textContent='Let me know a bit about what you need.'; msg.focus(); return; }
-        emailBtn.disabled=true; label.textContent='Sending…';
-        await submitLead({ EMAIL:email.value.trim(), MESSAGE:`From ${name.value.trim()}: ${msg.value.trim()}` });
-        emailBtn.classList.add('sent'); label.textContent='Sent ✓';
-        setTimeout(()=>{ emailBtn.disabled=false; emailBtn.classList.remove('sent'); label.textContent=cfg.labelText;
-            name.value=''; email.value=''; msg.value=''; if(cfg.closeAfter) closeBooking(); }, 1800);
-    });
-    waBtn.addEventListener('click', ()=>{
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildText())}`;
-        window.open(url,'_blank');
-    });
-}
-wireForm({ name:'bName', email:'bEmail', msg:'bMsg', err:'bErr', emailBtn:'bEmailBtn', label:'bEmailLabel', waBtn:'bWaBtn', labelText:'Send message', closeAfter:true });
-wireForm({ name:'cName', email:'cEmail', msg:'cMsg', err:'cErr', emailBtn:'cEmailBtn', label:'cEmailLabel', waBtn:'cWaBtn', labelText:'Send message', closeAfter:false });
+    const wa = document.getElementById('cWaBtn');
+    if(wa) wa.addEventListener('click', ()=> openWhatsApp(buildText()));
+})();
+
+document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){ lightbox.classList.remove('show'); closeMenuFn(); }
+});
 
 /* =========================================================
    IMAGE PROTECTION (deterrent) — block right-click / drag /

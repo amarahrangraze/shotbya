@@ -1,1 +1,1271 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shot by A | Photography, Johannesburg</title>
+<link rel="icon" type="image/png" href="assets/logo-on-red.png">
+<link rel="apple-touch-icon" href="assets/logo-on-red.png">
+<meta name="description" content="Shot by A — photography and creative storytelling based in Johannesburg, South Africa. Portraits, events and lifestyle shoots with a bold, editorial edge.">
+<link rel="canonical" href="https://www.shotbya.co.za/">
+
+<!-- Open Graph / social share -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Shot by A">
+<meta property="og:title" content="Shot by A | Photography, Johannesburg">
+<meta property="og:description" content="Photography and creative storytelling based in Johannesburg, South Africa — portraits, events and lifestyle with a bold, editorial edge.">
+<meta property="og:image" content="https://www.shotbya.co.za/assets/hero-home.jpg">
+<meta property="og:url" content="https://www.shotbya.co.za/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shot by A | Photography, Johannesburg">
+<meta name="twitter:description" content="Photography and creative storytelling based in Johannesburg, South Africa.">
+<meta name="twitter:image" content="https://www.shotbya.co.za/assets/hero-home.jpg">
+
+<!-- Structured data: local photography business (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Shot by A",
+  "description": "Photography and creative storytelling based in Johannesburg, South Africa.",
+  "image": "https://www.shotbya.co.za/assets/hero-home.jpg",
+  "url": "https://www.shotbya.co.za/",
+  "areaServed": "Johannesburg, South Africa",
+  "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressCountry": "ZA" },
+  "email": "amarah.rangraze@gmail.com",
+  "telephone": "+27844456657",
+  "sameAs": ["https://www.instagram.com/shotbya_photography"]
+}
+</script>
+
+<!-- Google Analytics (GA4) — only loads after cookie consent is accepted, see cookie-consent script near </body>.
+     Replace the ID below with Shot by A's own GA4 measurement ID. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+window.SBA_GA_ID = ''; /* e.g. 'G-XXXXXXXXXX' — leave empty to disable analytics */
+</script>
+
+<!-- Fonts: Poppins (subheads) + a clean grotesk fallback stack for body.
+     Amsterdam Three is a paid script font — self-host it as assets/fonts/AmsterdamThree.woff2
+     and it will load via the @font-face below. Until then, headings fall back to a
+     cursive stack so the layout still reads correctly. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   SHOT BY A — DESIGN TOKENS   (sister brand of FOM Studios)
+   Same architecture as FOM: floating header, pill/rounded
+   buttons, rounded-top footer, cookie-consent + GA gating,
+   booking popup, lightbox. Re-skinned to the Shot by A brand:
+   deep reds + moss/stone neutrals, script display type, and
+   thatpinkstudio-style paint-stroke image heroes with hand
+   drawn accents.
+
+   Palette (from brand board):
+     --dark-red : #780000
+     --vivid-red: #C1121F
+     --moss     : #B9BAA3
+     --stone     : #D6D5C9
+     --black    : #0A100D
+     --maroon   : #630606
+   ========================================================= */
+@font-face{
+    font-family:"Amsterdam Three";
+    src:url("assets/fonts/AmsterdamThree.woff2") format("woff2"),
+        url("assets/fonts/AmsterdamThree.woff") format("woff"),
+        url("assets/fonts/AmsterdamThree.ttf") format("truetype");
+    font-weight:normal; font-style:normal; font-display:swap;
+}
+
+:root{
+    /* brand */
+    --dark-red:#780000;
+    --vivid-red:#C1121F;
+    --moss:#B9BAA3;
+    --stone:#D6D5C9;
+    --black:#0A100D;
+    --maroon:#630606;
+
+    /* semantic roles */
+    --bg:#e9e8e0;           /* page background — warm stone, a touch deeper than the logo bg */
+    --bg-pill:#f4f3ee;      /* floating header, cards */
+    --bg-dark:var(--dark-red); /* footer + dark bands */
+    --ink:#2a1414;          /* primary text — near-black warmed toward maroon */
+    --ink-soft:#6d5a58;     /* secondary text */
+    --ink-on-dark:#f2efe6;  /* text on dark-red */
+    --line:#cfcdc0;         /* hairline borders */
+    --accent:var(--dark-red);
+    --accent-hover:var(--maroon);
+    --accent-on-dark:var(--moss); /* accent tint that reads on the dark-red footer */
+
+    --container:1320px;
+    --gutter:clamp(20px,5vw,64px);
+    --radius-pill:999px;
+    --radius-card:20px;
+
+    /* type roles */
+    --font-display:"Amsterdam Three","Brush Script MT","Segoe Script",cursive;
+    --font-sub:"Poppins",-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --font-body:-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+}
+
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+.wrap{ max-width:var(--container); margin:0 auto; padding:0 var(--gutter); }
+
+.eyebrow{
+    font-family:var(--font-sub);
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; display:block; margin-bottom:14px;
+}
+
+h1,h2,h3{ font-family:var(--font-display); font-weight:400; }
+.sub{ font-family:var(--font-sub); }
+
+/* =========================================================
+   IMAGE PROTECTION  (deterrent layer — same intent as asked
+   for FOM: makes casual saving/dragging harder. Not DRM;
+   determined users can still get pixels, but this stops
+   right-click-save, drag-to-desktop, and long-press menus.)
+   ========================================================= */
+img{ -webkit-user-drag:none; -webkit-touch-callout:none; user-select:none; pointer-events:auto; }
+.no-select{ -webkit-user-select:none; -moz-user-select:none; user-select:none; }
+/* transparent shield over gallery/hero images blocks the iOS long-press
+   "save image" sheet and desktop drag-ghost without hurting taps */
+.shieldable{ position:relative; }
+.shieldable::after{ content:""; position:absolute; inset:0; z-index:2; }
+
+/* =========================== TRANSPARENT HEADER ===========================
+   thatpinkstudio layout: a full-width bar sitting OVER the full-bleed
+   hero — no pill, no border. Hamburger on the LEFT, the real logo PNG
+   CENTERED, a round account/book affordance on the RIGHT. Starts fully
+   transparent (chrome tinted light so it reads on the photo); once the
+   page is scrolled past the hero it gains a solid dark-red background
+   via the .scrolled class (toggled in JS). */
+.nav-shell{ position:fixed; top:0; left:0; right:0; z-index:1000; transition:background .35s ease, box-shadow .35s ease, padding .35s ease; }
+.nav-shell{ background:transparent; padding:14px var(--gutter); }
+.nav-shell.scrolled{ background:var(--dark-red); box-shadow:0 6px 22px rgba(42,10,10,.28); padding:8px var(--gutter); }
+
+nav.bar{
+    max-width:var(--container); margin:0 auto;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px;
+}
+.nav-left{ display:flex; align-items:center; gap:18px; justify-self:start; }
+.nav-center{ justify-self:center; }
+.nav-right{ justify-self:end; display:flex; align-items:center; gap:16px; }
+
+/* all nav chrome is light so it reads over the hero photo AND over the
+   dark-red scrolled bar — both are dark backgrounds */
+.nav-toggle{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
+    background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; }
+.nav-toggle span{ width:24px; height:2px; background:var(--ink-on-dark); display:block; border-radius:2px; transition:background .35s ease; }
+
+.nav-logo img{ height:clamp(46px,6vw,62px); width:auto; transition:height .35s ease; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35)); }
+.nav-shell.scrolled .nav-logo img{ height:clamp(38px,5vw,50px); filter:none; }
+.nav-logo .brand-fallback{ font-family:var(--font-display); font-size:30px; color:var(--ink-on-dark); line-height:1; }
+
+nav.bar .nav-links{ display:flex; gap:24px; list-style:none; }
+nav.bar .nav-links a{ font-family:var(--font-sub); font-size:13.5px; font-weight:500; color:var(--ink-on-dark); opacity:.92; transition:opacity .2s ease; text-shadow:0 1px 8px rgba(0,0,0,.3); }
+.nav-shell.scrolled nav.bar .nav-links a{ text-shadow:none; }
+nav.bar .nav-links a:hover,
+nav.bar .nav-links a.active{ opacity:1; text-decoration:underline; text-underline-offset:5px; }
+
+.nav-account{
+    display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
+    border:1.5px solid rgba(242,239,230,.85); color:var(--ink-on-dark); background:rgba(10,16,13,.12);
+    transition:.2s ease; flex-shrink:0;
+}
+.nav-account:hover{ background:var(--ink-on-dark); color:var(--dark-red); }
+.nav-account svg{ width:20px; height:20px; }
+
+/* mobile slide-out menu */
+.mobile-menu{
+    position:fixed; top:0; left:0; height:100%; width:min(340px,86vw);
+    background:var(--bg-pill); z-index:1100; transform:translateX(-100%); transition:transform .3s ease;
+    padding:28px; display:flex; flex-direction:column; box-shadow:4px 0 24px rgba(0,0,0,.12);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+}
+.mobile-menu.open{ transform:translateX(0); }
+.mobile-menu .close-menu{ align-self:flex-end; background:none; border:none; font-size:28px; cursor:pointer; color:var(--ink); line-height:1; margin-bottom:20px; }
+.mobile-menu ul{ list-style:none; display:flex; flex-direction:column; }
+.mobile-menu ul li{ border-bottom:1px solid var(--line); }
+.mobile-menu ul li a{ display:block; padding:18px 4px; font-family:var(--font-sub); font-size:18px; font-weight:600; color:var(--ink); }
+.mobile-menu ul li a.active{ color:var(--accent); }
+.mobile-menu .menu-media{ margin-top:28px; display:flex; align-items:center; justify-content:center; }
+.mobile-menu .menu-media img{ width:100%; max-width:150px; height:auto; object-fit:contain; margin:0 auto; }
+.mobile-menu .menu-social{ margin-top:28px; padding-top:24px; border-top:1px solid var(--line); display:flex; gap:20px; flex-shrink:0; }
+.mobile-menu .menu-social a{ font-family:var(--font-sub); font-size:13px; font-weight:600; color:var(--ink-soft); }
+
+.scrim{ position:fixed; inset:0; background:rgba(42,20,20,.3); z-index:1050; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+.scrim.show{ opacity:1; pointer-events:auto; }
+
+/* =========================================================
+   FULL-BLEED PAINT-STROKE HERO  (thatpinkstudio signature)
+   Edge-to-edge: the photo fills the whole hero, its BOTTOM
+   edge is a torn paint stroke (so the section below appears
+   to be revealed by a brush sweep). The transparent nav sits
+   over the top; the headline/CTAs sit lower over the image.
+   ========================================================= */
+.hero{ position:relative; width:100%; }
+.paint-frame{
+    position:relative; width:100%;
+    min-height:clamp(460px,82vh,760px);
+    /* torn paint edge via clip-path referencing the inline SVG clipPath */
+    -webkit-clip-path:url(#paintmask); clip-path:url(#paintmask);
+    background:var(--dark-red);
+    overflow:hidden;
+}
+/* interior heroes (gallery/prices/policy/contact) are shorter */
+.hero.hero-sub-page .paint-frame{ min-height:clamp(360px,58vh,520px); }
+.paint-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.paint-frame::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(42,10,10,.42) 0%, rgba(42,10,10,.14) 34%, rgba(42,10,10,.10) 60%, rgba(42,10,10,.46) 100%);
+}
+.hero-overlay{
+    position:absolute; inset:0; z-index:3;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center;
+    padding:0 24px clamp(56px,9vh,96px);
+}
+.hero-overlay h1{
+    color:var(--ink-on-dark); font-size:clamp(44px,9vw,92px); line-height:.98; letter-spacing:.01em;
+    text-shadow:0 3px 22px rgba(0,0,0,.4);
+}
+.hero-overlay .hero-sub{
+    font-family:var(--font-sub); color:var(--ink-on-dark); opacity:.96; font-weight:400;
+    font-size:clamp(14px,1.8vw,18px); margin-top:16px; max-width:44ch; text-shadow:0 2px 14px rgba(0,0,0,.4);
+}
+.hero-overlay .hero-ctas{ display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; justify-content:center; }
+
+/* =========================== BUTTONS (thatpinkstudio pill) =========================== */
+.btn{
+    font-family:var(--font-sub);
+    display:inline-flex; align-items:center; justify-content:center;
+    border-radius:14px; padding:15px 30px; font-size:14px; font-weight:600; letter-spacing:.01em;
+    transition:.22s ease; text-align:center; cursor:pointer; border:1.5px solid transparent;
+}
+/* solid stone button on dark, like TPS "Book The Studio" */
+.btn-solid{ background:var(--stone); color:var(--maroon); box-shadow:0 8px 20px rgba(0,0,0,.14); }
+.btn-solid:hover{ background:#fff; color:var(--dark-red); }
+/* filled red button on light backgrounds */
+.btn-red{ background:var(--dark-red); color:var(--ink-on-dark); }
+.btn-red:hover{ background:var(--maroon); }
+/* outline button */
+.btn-outline{ border-color:var(--dark-red); color:var(--dark-red); background:transparent; }
+.btn-outline:hover{ background:var(--dark-red); color:var(--ink-on-dark); }
+/* outline on dark hero */
+.btn-ghost{ border-color:var(--ink-on-dark); color:var(--ink-on-dark); background:rgba(10,16,13,.18); backdrop-filter:blur(6px); }
+.btn-ghost:hover{ background:var(--ink-on-dark); color:var(--maroon); }
+.btn-wa{ background:#25D366; color:#0b1f12; }
+.btn-wa:hover{ background:#1ebc59; }
+
+/* =========================== SECTIONS =========================== */
+.view{ display:none; }
+.view.active{ display:block; animation:fade .4s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+section{ padding:52px 0; }
+section.tight{ padding:34px 0; }
+
+.section-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:30px; }
+.section-head h2{ font-size:clamp(38px,6vw,60px); line-height:1; }
+.section-head .section-note{ font-family:var(--font-sub); color:var(--ink-soft); max-width:34ch; font-size:15px; }
+
+/* hand-drawn underline accent under headings */
+.hand-underline{ display:block; width:180px; max-width:70%; height:16px; margin-top:6px; color:var(--dark-red); }
+
+/* =========================== WELCOME =========================== */
+.welcome{ text-align:center; max-width:760px; margin:0 auto; }
+.welcome h2{ font-size:clamp(40px,7vw,64px); line-height:1; margin-bottom:6px; }
+.welcome p{ font-family:var(--font-sub); color:var(--ink-soft); font-size:16.5px; margin-top:14px; font-weight:300; }
+
+/* =========================================================
+   OUR WORK — two overlapping images + hand-drawn heart
+   (mirrors the TPS "UGC tools" collage)
+   ========================================================= */
+.collage{ position:relative; min-height:420px; }
+.collage .ph{ position:absolute; border:8px solid var(--stone); box-shadow:0 18px 40px rgba(120,0,0,.16); overflow:hidden; background:var(--moss); }
+.collage .ph img{ width:100%; height:100%; object-fit:cover; }
+.collage .ph-back{ width:52%; aspect-ratio:3/4; top:0; right:4%; transform:rotate(4deg); z-index:1; }
+.collage .ph-front{ width:52%; aspect-ratio:4/5; bottom:0; left:2%; transform:rotate(-5deg); z-index:2; }
+.collage .heart{ position:absolute; right:2%; bottom:6%; width:130px; color:var(--dark-red); z-index:0; opacity:.85; }
+
+.work-copy h2{ font-size:clamp(36px,5vw,54px); line-height:1; }
+.work-copy p{ font-family:var(--font-sub); color:var(--ink-soft); font-size:16px; margin:16px 0 26px; font-weight:300; max-width:46ch; }
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+
+/* =========================================================
+   ARCH — inverted band (TPS "DESIGNED FOR VALUE" layout).
+   A full-width dark-red band; a white rounded card floats on
+   it holding an arch-topped photo; a hand-drawn HEART breaks
+   the top-right edge and FLOWERS break the bottom-left edge.
+   Heading + text + button sit below, on the dark band.
+   No border around the arch image itself.
+   ========================================================= */
+.arch-band{ background:var(--dark-red); color:var(--ink-on-dark); padding:56px 0 64px; }
+.arch-card{
+    background:var(--bg-pill); border-radius:26px; padding:22px;
+    max-width:520px; margin:0 auto; position:relative;
+    box-shadow:0 26px 60px rgba(42,10,10,.30);
+}
+.arch-photo{
+    position:relative; z-index:1; overflow:visible;
+    border-radius:200px 200px 20px 20px; /* arch top */
+}
+.arch-photo .arch-clip{
+    border-radius:200px 200px 20px 20px; overflow:hidden; background:var(--moss);
+    aspect-ratio:3/3.5;
+}
+.arch-photo img{ width:100%; height:100%; object-fit:cover; }
+/* heart breaking the top-right edge */
+.arch-heart{ position:absolute; top:-26px; right:-14px; width:clamp(90px,16vw,140px); color:var(--dark-red); z-index:3; }
+.arch-heart img{ width:100%; height:auto; }
+/* flowers breaking the bottom-left edge */
+.arch-flowers{ position:absolute; bottom:-30px; left:-24px; width:clamp(96px,18vw,150px); color:var(--dark-red); z-index:3; }
+.arch-flowers img{ width:100%; height:auto; }
+
+.arch-copy{ text-align:center; max-width:640px; margin:44px auto 0; }
+.arch-copy h2{ font-size:clamp(30px,5vw,48px); line-height:1; color:var(--ink-on-dark); }
+.arch-copy .arch-rule{ display:block; width:200px; max-width:60%; height:16px; margin:10px auto 22px; color:var(--stone); }
+.arch-copy p{ font-family:var(--font-sub); color:#f0dede; font-size:15px; font-weight:300; margin-bottom:14px; }
+.arch-copy .arch-cta{ margin-top:24px; }
+/* testimonial line under the value copy */
+.testi-stars{ color:var(--stone); letter-spacing:3px; font-size:15px; margin-bottom:10px; }
+.testi-quote{ font-family:var(--font-display); font-size:clamp(22px,3vw,32px); line-height:1.14; color:var(--ink-on-dark); }
+.testi-who{ font-family:var(--font-sub); font-weight:600; margin-top:16px; font-size:14px; color:var(--stone); }
+.testi-role{ font-family:var(--font-sub); color:#e9c9c9; font-size:12.5px; }
+.testi-dots{ display:flex; gap:8px; margin-top:20px; justify-content:center; }
+.testi-dots button{ width:9px; height:9px; border-radius:50%; border:none; background:rgba(242,239,230,.4); cursor:pointer; padding:0; }
+.testi-dots button.active{ background:var(--stone); }
+
+/* =========================================================
+   HOW IT WORKS — two overlapping OVALS (TPS ellipse image)
+   ========================================================= */
+.how-collage{ position:relative; min-height:440px; }
+.how-collage .oval{ position:absolute; width:66%; aspect-ratio:3/3.4; border-radius:50%; overflow:hidden; border:8px solid var(--stone); background:var(--moss); box-shadow:0 16px 40px rgba(120,0,0,.16); }
+.how-collage .oval img{ width:100%; height:100%; object-fit:cover; }
+.how-collage .oval-a{ top:0; left:0; z-index:2; }
+.how-collage .oval-b{ bottom:0; right:0; z-index:1; }
+.how-steps{ display:flex; flex-direction:column; gap:22px; }
+.how-step{ display:flex; gap:18px; align-items:flex-start; }
+.how-step .n{ font-family:var(--font-display); font-size:40px; line-height:.8; color:var(--dark-red); flex-shrink:0; width:52px; }
+.how-step h4{ font-family:var(--font-sub); font-size:17px; font-weight:600; margin-bottom:4px; }
+.how-step p{ font-family:var(--font-sub); font-size:14.5px; color:var(--ink-soft); font-weight:300; }
+
+/* =========================================================
+   GALLERY (page) — masonry-ish responsive grid + lightbox
+   ========================================================= */
+.gallery-grid{ columns:3; column-gap:16px; }
+.gallery-grid .g-item{ break-inside:avoid; margin-bottom:16px; border-radius:14px; overflow:hidden; cursor:pointer; background:var(--moss); box-shadow:0 8px 22px rgba(120,0,0,.08); }
+.gallery-grid .g-item img{ width:100%; height:auto; transition:transform .45s ease; }
+.gallery-grid .g-item:hover img{ transform:scale(1.05); }
+
+/* home mini strip */
+.strip{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
+.strip::-webkit-scrollbar{ display:none; }
+.strip .s-card{ flex:0 0 calc((100% - 32px)/3); scroll-snap-align:start; cursor:pointer; }
+.strip .s-card .s-media{ border-radius:14px; overflow:hidden; aspect-ratio:1/1; background:var(--moss); }
+.strip .s-card img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.strip .s-card:hover img{ transform:scale(1.05); }
+.strip .s-card .s-cap{ font-family:var(--font-sub); margin-top:10px; font-size:13px; font-weight:600; color:var(--ink-soft); }
+
+/* =========================================================
+   PRICES — matches the uploaded price-list card design:
+   maroon card, stone rows, thin red frame, leafy corner.
+   ========================================================= */
+.price-frame{ position:relative; max-width:560px; margin:0 auto; padding:26px; }
+.price-frame .leaf{ position:absolute; left:-6px; bottom:-6px; width:150px; color:var(--dark-red); opacity:.55; z-index:0; pointer-events:none; }
+.price-card{
+    position:relative; z-index:1; background:var(--dark-red); border-radius:6px;
+    border:2px solid var(--vivid-red); padding:10px; box-shadow:0 18px 44px rgba(120,0,0,.22);
+}
+.price-row{ background:var(--stone); color:var(--maroon); margin:14px 10px; }
+.price-row .r-top{ display:flex; justify-content:space-between; align-items:baseline; padding:12px 16px 8px; }
+.price-row .r-name{ font-family:var(--font-sub); font-weight:700; letter-spacing:.02em; font-size:15px; text-transform:uppercase; }
+.price-row .r-price{ font-family:var(--font-sub); font-weight:700; font-size:15px; }
+.price-row .r-cover{ background:var(--maroon); color:var(--stone); font-family:var(--font-sub); font-size:12px; letter-spacing:.04em; text-transform:uppercase; padding:7px 16px; }
+.price-excl{ text-align:center; font-family:var(--font-sub); font-weight:700; color:var(--stone); text-transform:uppercase; font-size:12.5px; letter-spacing:.05em; padding:14px 20px 6px; line-height:1.6; }
+.prices-note{ font-family:var(--font-sub); text-align:center; color:var(--ink-soft); font-size:14px; max-width:52ch; margin:26px auto 0; }
+.prices-note strong{ color:var(--dark-red); }
+
+/* =========================================================
+   POLICY
+   ========================================================= */
+.policy-body{ max-width:820px; margin:0 auto; }
+.policy-block{ background:var(--bg-pill); border:1px solid var(--line); border-radius:var(--radius-card); padding:26px 28px; margin-bottom:16px; }
+.policy-block h3{ font-family:var(--font-sub); font-weight:600; font-size:18px; color:var(--dark-red); margin-bottom:10px; }
+.policy-block p, .policy-block li{ font-family:var(--font-sub); font-size:14.5px; color:var(--ink-soft); font-weight:300; }
+.policy-block ul{ padding-left:20px; display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+
+/* =========================================================
+   CONTACT (page)
+   ========================================================= */
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+.contact-card{ background:var(--bg-pill); border:1px solid var(--line); border-radius:var(--radius-card); padding:32px; }
+.contact-list{ list-style:none; display:flex; flex-direction:column; gap:18px; margin-top:8px; }
+.contact-list li{ font-family:var(--font-sub); font-size:15px; }
+.contact-list .lbl{ display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:2px; }
+.contact-list a{ color:var(--dark-red); font-weight:500; }
+
+/* =========================================================
+   FIELD / FORM (booking popup + contact form)
+   ========================================================= */
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-family:var(--font-sub); font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+.field input, .field textarea{
+    width:100%; border:1px solid var(--line); border-radius:12px; padding:12px 14px; font-size:14px;
+    font-family:var(--font-sub); color:var(--ink); background:#fff; resize:vertical;
+}
+.field input:focus, .field textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.field-err{ font-family:var(--font-sub); font-size:12.5px; color:#b3261e; margin:-8px 0 12px; min-height:16px; }
+
+/* =========================================================
+   CTA BAND (rounded card, TPS-style)
+   ========================================================= */
+.cta-band{ background:var(--bg-pill); border:1px solid var(--line); border-radius:var(--radius-card); }
+.cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:28px; flex-wrap:wrap; padding:40px 40px; }
+.cta-inner h3{ font-size:clamp(30px,4.4vw,44px); max-width:20ch; line-height:1; }
+.cta-inner p{ font-family:var(--font-sub); color:var(--ink-soft); max-width:44ch; margin-top:10px; font-size:15px; font-weight:300; }
+.cta-band.dark{ background:var(--dark-red); border-color:var(--dark-red); }
+.cta-band.dark h3{ color:var(--ink-on-dark); }
+.cta-band.dark p{ color:#e9c9c9; }
+
+/* =========================================================
+   FOOTER — deep curved top, dark-red, centered logo like TPS.
+   The concave sweep is drawn with a wide oval pseudo-element
+   sitting above the footer body. Columns stack + center on
+   mobile, sit side-by-side on desktop.
+   ========================================================= */
+footer.site-footer{ position:relative; background:var(--dark-red); color:var(--ink-on-dark); margin-top:70px; padding:20px 0 0; text-align:center; }
+footer.site-footer::before{
+    content:""; position:absolute; left:-6%; right:-6%; top:-58px; height:120px;
+    background:var(--dark-red); border-radius:50%/100%; border-top-left-radius:50%; border-top-right-radius:50%;
+}
+.footer-logo{ position:relative; z-index:1; }
+.footer-logo img{ height:96px; width:auto; margin:0 auto 8px; }
+.footer-logo .brand-fallback{ font-family:var(--font-display); font-size:44px; color:var(--stone); }
+.footer-cols{ position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:center; gap:44px 56px; margin:36px 0 6px; }
+.footer-col h4{ font-family:var(--font-sub); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--stone); margin-bottom:12px; }
+.footer-col .rule{ width:64px; height:2px; background:rgba(242,239,230,.55); margin:0 auto 14px; }
+.footer-col ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col a, .footer-col span.line{ font-family:var(--font-sub); color:#f0dede; font-size:14px; transition:color .2s ease; }
+.footer-col a:hover{ color:#fff; }
+.footer-bottom{ position:relative; z-index:1; border-top:1px solid rgba(242,239,230,.16); margin-top:34px; padding:22px 0 26px; }
+.footer-bottom p{ font-family:var(--font-sub); font-size:12px; color:#e3bcbc; }
+
+/* =========================== LIGHTBOX =========================== */
+.lightbox{ display:none; position:fixed; inset:0; z-index:2000; background:rgba(10,16,13,.94); padding:60px 20px; align-items:center; justify-content:center; }
+.lightbox.show{ display:flex; }
+.lightbox img{ max-width:92vw; max-height:85vh; border-radius:12px; }
+.lightbox .close{ position:absolute; top:22px; right:28px; color:#fff; font-size:38px; cursor:pointer; line-height:1; background:none; border:none; }
+
+/* =========================== BOOKING POPUP =========================== */
+.booking-overlay{ display:none; position:fixed; inset:0; z-index:2100; background:rgba(10,16,13,.55); align-items:center; justify-content:center; padding:20px; }
+.booking-overlay.show{ display:flex; }
+.booking-modal{ background:var(--bg-pill); border-radius:var(--radius-card); border:1px solid var(--line); max-width:440px; width:100%; max-height:90vh; overflow-y:auto; padding:32px; position:relative; box-shadow:0 24px 60px rgba(0,0,0,.3); }
+.booking-close{ position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--bg-pill); font-size:20px; line-height:1; cursor:pointer; color:var(--ink); }
+.booking-close:hover{ background:var(--dark-red); color:#fff; border-color:var(--dark-red); }
+.booking-modal h3{ font-size:34px; line-height:1; margin-bottom:6px; }
+.booking-modal .booking-sub{ font-family:var(--font-sub); color:var(--ink-soft); font-size:14px; margin-bottom:22px; font-weight:300; }
+.booking-actions{ display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+.booking-btn{ display:flex; align-items:center; justify-content:center; gap:8px; border-radius:14px; padding:14px 20px; font-family:var(--font-sub); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; transition:.2s ease; }
+.booking-btn.email{ background:var(--dark-red); color:#fff; }
+.booking-btn.email:hover{ background:var(--maroon); }
+.booking-btn.email.sent{ background:#27ae60; cursor:default; }
+.booking-btn.email:disabled{ opacity:.75; cursor:default; }
+.booking-btn.whatsapp{ background:#25D366; color:#0b1f12; }
+.booking-btn.whatsapp:hover{ background:#1ebc59; }
+.booking-btn svg{ width:18px; height:18px; flex-shrink:0; }
+.booking-note{ font-family:var(--font-sub); font-size:12px; color:var(--ink-soft); margin-top:14px; text-align:center; font-weight:300; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:1024px){
+    .gallery-grid{ columns:2; }
+    .strip .s-card{ flex:0 0 calc((100% - 16px)/2); }
+}
+@media (max-width:860px){
+    nav.bar .nav-links{ display:none; }
+}
+@media (max-width:680px){
+    .two-col{ grid-template-columns:1fr; gap:36px; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ columns:1; }
+    .strip .s-card{ flex:0 0 84%; }
+    .cta-inner{ flex-direction:column; align-items:flex-start; padding:30px 24px; }
+    .collage{ min-height:340px; }
+    .how-collage{ min-height:360px; }
+    section{ padding:40px 0; }
+    /* full-bleed hero: fill more of the phone screen */
+    .paint-frame{ min-height:82vh; }
+    .hero.hero-sub-page .paint-frame{ min-height:56vh; }
+    .hero-overlay{ padding:0 22px clamp(48px,8vh,72px); }
+    .hero-overlay h1{ font-size:clamp(40px,12vw,60px); }
+    .collage .heart{ width:92px; }
+    /* footer columns stack and center on phones */
+    .footer-cols{ flex-direction:column; gap:30px; }
+    footer.site-footer::before{ top:-40px; height:90px; }
+    .footer-logo img{ height:80px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SVG DEFS — the paint-stroke mask + hand-drawn line art that
+     give the site its thatpinkstudio-style personality. Kept once
+     here and referenced everywhere via url(#id) / <use>.
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- full-bleed hero mask: flush top + sides, torn PAINT-STROKE bottom
+         edge (a brush sweep revealing the section below) -->
+    <clipPath id="paintmask" clipPathUnits="objectBoundingBox">
+      <path d="M0,0 L1,0 L1,0.9
+        C0.94,0.895 0.9,0.945 0.83,0.95
+        C0.74,0.957 0.68,0.9 0.6,0.912
+        C0.5,0.927 0.46,0.985 0.36,0.972
+        C0.28,0.962 0.25,0.912 0.17,0.918
+        C0.1,0.923 0.06,0.965 0,0.94 Z"/>
+    </clipPath>
+
+    <!-- hand-drawn heart -->
+    <symbol id="i-heart" viewBox="0 0 200 180">
+      <path d="M20,60 C20,20 70,15 100,55 C130,15 180,20 180,60 C180,110 120,140 100,165 C80,140 20,110 20,60 Z"
+        fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M35,64 C40,44 66,44 78,62" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    </symbol>
+
+    <!-- hand-drawn underline squiggle -->
+    <symbol id="i-underline" viewBox="0 0 300 26">
+      <path d="M6,16 C60,4 110,26 160,12 C210,0 250,20 294,10"
+        fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- hand-drawn flowers/leaves sprig (arch bottom-left fallback) -->
+    <symbol id="i-flowers" viewBox="0 0 200 220">
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40,210 C50,150 60,110 110,70"/>
+        <path d="M70,150 C50,140 40,120 46,100 C70,104 84,120 82,146"/>
+        <path d="M92,110 C74,96 70,74 82,56 C104,66 112,90 100,112"/>
+        <path d="M120,86 C108,64 116,40 138,30 C150,52 144,80 122,92"/>
+        <g>
+          <circle cx="150" cy="30" r="9"/>
+          <path d="M150,30 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0" stroke-dasharray="2 10"/>
+        </g>
+        <g>
+          <circle cx="60" cy="120" r="7"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- leafy sprig for the price card corner -->
+    <symbol id="i-leaf" viewBox="0 0 200 260">
+      <path d="M150,10 C90,60 50,130 60,250" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <path d="M120,50 C95,40 78,50 72,72 C96,74 114,68 120,50 Z"/>
+        <path d="M98,100 C73,92 56,104 52,126 C76,126 92,118 98,100 Z"/>
+        <path d="M84,152 C60,146 44,160 42,182 C66,180 80,170 84,152 Z"/>
+        <path d="M74,204 C52,200 38,214 38,234 C60,232 70,220 74,204 Z"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- SCRIM + MOBILE MENU -->
+<div class="scrim" id="scrim"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
+    <ul>
+        <li><a href="#home" data-nav data-menu-link>Home</a></li>
+        <li><a href="#gallery" data-nav data-menu-link>Gallery</a></li>
+        <li><a href="#prices" data-nav data-menu-link>Prices</a></li>
+        <li><a href="#policy" data-nav data-menu-link>Policy</a></li>
+        <li><a href="#contact" data-nav data-menu-link>Contact</a></li>
+    </ul>
+    <div class="menu-media">
+        <img src="assets/logo.png" alt="Shot by A" onerror="this.onerror=null; this.src='assets/logo-maroon-transparent.png';">
+    </div>
+    <div class="menu-social">
+        <a href="https://www.instagram.com/shotbya_photography" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:amarah.rangraze@gmail.com">Email</a>
+    </div>
+</div>
+
+<!-- TRANSPARENT HEADER over the hero: hamburger + links left · logo PNG center · book icon right -->
+<div class="nav-shell" id="navShell">
+    <nav class="bar">
+        <div class="nav-left">
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="#home" data-nav>Home</a></li>
+                <li><a href="#gallery" data-nav>Gallery</a></li>
+                <li><a href="#prices" data-nav>Prices</a></li>
+                <li><a href="#policy" data-nav>Policy</a></li>
+            </ul>
+        </div>
+        <a href="#home" data-nav class="nav-center nav-logo" aria-label="Shot by A home">
+            <img src="assets/logo.png" alt="Shot by A"
+                 onerror="this.onerror=null; this.src='assets/logo-cream-transparent.png';">
+            <span class="brand-fallback" style="display:none;">Shot by A</span>
+        </a>
+        <div class="nav-right">
+            <a href="#book" class="nav-account" data-open-booking aria-label="Book a shoot" title="Book a shoot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round"/></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<!-- ============================================================ HOME ============================================================ -->
+<main id="app">
+<div class="view active" id="view-home" data-view="home">
+
+    <!-- HERO (full-bleed paint stroke) -->
+    <div class="hero">
+        <div class="paint-frame shieldable">
+            <picture>
+                <source media="(max-width:700px)" srcset="assets/hero-home-mobile.jpg">
+                <img src="assets/hero-home.jpg" alt="Photography by Shot by A, Johannesburg"
+                     onerror="this.closest('.paint-frame').style.background='linear-gradient(135deg,#780000,#630606)'; this.style.display='none';">
+            </picture>
+            <div class="hero-overlay">
+                <h1>Every moment,<br>beautifully shot.</h1>
+                <p class="hero-sub">Photography &amp; creative storytelling in Johannesburg, South Africa.</p>
+                <div class="hero-ctas">
+                    <a href="#book" class="btn btn-solid" data-open-booking>Book a shoot</a>
+                    <a href="#gallery" data-nav class="btn btn-ghost">View gallery</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WELCOME -->
+    <section class="tight">
+        <div class="wrap welcome">
+            <span class="eyebrow">Welcome</span>
+            <h2>Hi, I'm Amarah</h2>
+            <p>Shot by A is a photography brand built on one simple idea: your story deserves to be told beautifully. From portraits and events to lifestyle and brand shoots, every frame is captured with intention, warmth and a bold, editorial edge — so you walk away with images you're genuinely proud of.</p>
+            <p>Based in Johannesburg and part of the FOM Studios family, Shot by A brings the same care and craft to every session, whether it's your first shoot or your fiftieth.</p>
+        </div>
+    </section>
+
+    <!-- OUR WORK — overlapping collage + heart -->
+    <section>
+        <div class="wrap">
+            <div class="two-col">
+                <div class="collage shieldable" aria-hidden="false">
+                    <svg class="heart"><use href="#i-heart"/></svg>
+                    <div class="ph ph-back"><img src="assets/work-2.jpg" alt="Recent work by Shot by A" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+                    <div class="ph ph-front"><img src="assets/work-1.jpg" alt="Recent work by Shot by A" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+                </div>
+                <div class="work-copy">
+                    <span class="eyebrow">Our Work</span>
+                    <h2>Made to be<br>remembered</h2>
+                    <svg class="hand-underline"><use href="#i-underline"/></svg>
+                    <p>A look at some of the recent shoots — real people, real moments, captured in a way that actually feels like you. Have a browse through the full gallery to see the range.</p>
+                    <a href="#gallery" data-nav class="btn btn-red">View more work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCH — inverted band, white card, arch photo w/ heart + flowers -->
+    <section class="arch-band" style="padding-top:0;">
+        <div class="wrap" style="padding-top:56px;">
+            <div class="arch-card">
+                <div class="arch-photo shieldable">
+                    <div class="arch-clip">
+                        <img src="assets/arch.jpg" alt="Behind the scenes with Shot by A" loading="lazy"
+                             onerror="this.parentElement.style.background='linear-gradient(135deg,#B9BAA3,#D6D5C9)'; this.style.display='none';">
+                    </div>
+                    <!-- heart breaks the top-right edge (PNG if uploaded, SVG fallback) -->
+                    <span class="arch-heart">
+                        <img src="assets/heart.png" alt=""
+                             onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 200 180\' style=\'width:100%;height:auto\'><use href=&quot;#i-heart&quot;/></svg>';">
+                    </span>
+                    <!-- flowers break the bottom-left edge (PNG if uploaded, SVG fallback) -->
+                    <span class="arch-flowers">
+                        <img src="assets/flowers.png" alt=""
+                             onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 200 220\' style=\'width:100%;height:auto\'><use href=&quot;#i-flowers&quot;/></svg>';">
+                    </span>
+                </div>
+            </div>
+
+            <div class="arch-copy">
+                <span class="eyebrow" style="color:var(--stone);">What clients say</span>
+                <div class="testi-stars">★★★★★</div>
+                <blockquote class="testi-quote" id="testiQuote">"Amarah made the whole shoot feel effortless — and the photos completely blew us away."</blockquote>
+                <div class="testi-who" id="testiWho">Lerato M.</div>
+                <div class="testi-role" id="testiRole">Portrait session</div>
+                <div class="testi-dots" id="testiDots"></div>
+                <div class="arch-cta"><a href="#book" class="btn btn-solid" data-open-booking>Book a shoot</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS — overlapping ovals -->
+    <section>
+        <div class="wrap">
+            <div class="two-col">
+                <div>
+                    <span class="eyebrow">How it works</span>
+                    <h2 style="font-size:clamp(36px,5vw,54px); line-height:1;">Simple from<br>start to finish</h2>
+                    <svg class="hand-underline"><use href="#i-underline"/></svg>
+                    <div class="how-steps" style="margin-top:26px;">
+                        <div class="how-step"><span class="n">1</span><div><h4>Enquire</h4><p>Send through your date, location and what you'd like covered.</p></div></div>
+                        <div class="how-step"><span class="n">2</span><div><h4>Confirm</h4><p>We lock in your booking with a deposit, per the policy.</p></div></div>
+                        <div class="how-step"><span class="n">3</span><div><h4>Shoot</h4><p>On the day, we capture the moments that matter — relaxed and easy.</p></div></div>
+                        <div class="how-step"><span class="n">4</span><div><h4>Deliver</h4><p>Your edited gallery lands in your inbox, ready to share.</p></div></div>
+                    </div>
+                </div>
+                <div class="how-collage shieldable">
+                    <div class="oval oval-b"><img src="assets/how-2.jpg" alt="Shot by A studio setup" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+                    <div class="oval oval-a"><img src="assets/how-1.jpg" alt="Shot by A on a shoot" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM + POLICY CTA bands -->
+    <section class="tight">
+        <div class="wrap">
+            <div class="cta-band">
+                <div class="cta-inner">
+                    <div>
+                        <h3>See more on Instagram</h3>
+                        <p>Latest shoots, behind-the-scenes and new work — posted first on the feed.</p>
+                    </div>
+                    <a href="https://www.instagram.com/shotbya_photography" target="_blank" rel="noopener" class="btn btn-red">Open Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tight" style="padding-top:0;">
+        <div class="wrap">
+            <div class="cta-band dark">
+                <div class="cta-inner">
+                    <div>
+                        <h3>The details</h3>
+                        <p>Booking terms, deposits, cancellations and image usage — all in one place.</p>
+                    </div>
+                    <a href="#policy" data-nav class="btn btn-solid">View policy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ============================================================ GALLERY ============================================================ -->
+<div class="view" id="view-gallery" data-view="gallery">
+    <div class="hero hero-sub-page">
+        <div class="paint-frame shieldable">
+            <img src="assets/hero-gallery.jpg" alt="Shot by A gallery"
+                 onerror="this.closest('.paint-frame').style.background='linear-gradient(135deg,#780000,#630606)'; this.style.display='none';">
+            <div class="hero-overlay">
+                <h1>Gallery</h1>
+                <p class="hero-sub">A selection of recent work — tap any image to view it larger.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="wrap">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- images injected by JS from GALLERY_IMAGES; failed loads auto-remove -->
+            </div>
+            <div style="text-align:center; margin-top:34px;">
+                <a href="#book" class="btn btn-red" data-open-booking>Book your shoot</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ============================================================ PRICES ============================================================ -->
+<div class="view" id="view-prices" data-view="prices">
+    <div class="hero hero-sub-page">
+        <div class="paint-frame shieldable">
+            <img src="assets/hero-prices.jpg" alt="Shot by A pricing"
+                 onerror="this.closest('.paint-frame').style.background='linear-gradient(135deg,#780000,#630606)'; this.style.display='none';">
+            <div class="hero-overlay">
+                <h1>Price List</h1>
+                <p class="hero-sub">Straightforward packages — tailor any of them to what you need.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="wrap">
+            <div class="price-frame">
+                <svg class="leaf"><use href="#i-leaf"/></svg>
+                <div class="price-card">
+                    <div class="price-row">
+                        <div class="r-top"><span class="r-name">Mini Shoot</span><span class="r-price">R500</span></div>
+                        <div class="r-cover">1/2 hour coverage</div>
+                    </div>
+                    <div class="price-row">
+                        <div class="r-top"><span class="r-name">Photography</span><span class="r-price">R800</span></div>
+                        <div class="r-cover">1 hour coverage</div>
+                    </div>
+                    <div class="price-row">
+                        <div class="r-top"><span class="r-name">Photo + Video</span><span class="r-price">R1 500</span></div>
+                        <div class="r-cover">1 hour coverage</div>
+                    </div>
+                    <div class="price-excl">All prices are excluding<br>transport costs</div>
+                </div>
+            </div>
+            <p class="prices-note"><strong>Note:</strong> Every package can be tailored to your specific needs on request — extra coverage, more edited images or add-ons. Transport is quoted separately based on your location, before you confirm.</p>
+            <div style="text-align:center; margin-top:30px;">
+                <a href="#book" class="btn btn-red" data-open-booking>Enquire &amp; book</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ============================================================ POLICY ============================================================ -->
+<div class="view" id="view-policy" data-view="policy">
+    <div class="hero hero-sub-page">
+        <div class="paint-frame shieldable">
+            <img src="assets/hero-policy.jpg" alt="Shot by A policy"
+                 onerror="this.closest('.paint-frame').style.background='linear-gradient(135deg,#780000,#630606)'; this.style.display='none';">
+            <div class="hero-overlay">
+                <h1>Policy</h1>
+                <p class="hero-sub">Everything you need to know before your shoot.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="wrap policy-body">
+            <div class="policy-block">
+                <h3>Bookings &amp; deposits</h3>
+                <p>A non-refundable deposit is required to secure your date. Your booking is only confirmed once the deposit is received. The remaining balance is due on or before the shoot date, unless otherwise agreed in writing.</p>
+            </div>
+            <div class="policy-block">
+                <h3>Cancellations &amp; rescheduling</h3>
+                <ul>
+                    <li>Deposits are non-refundable but may be transferred to a new date once, if you reschedule at least 48 hours in advance.</li>
+                    <li>Cancellations within 48 hours of the shoot forfeit the deposit.</li>
+                    <li>If Shot by A needs to reschedule due to unforeseen circumstances, you'll be offered the next available date or a full refund of your deposit.</li>
+                </ul>
+            </div>
+            <div class="policy-block">
+                <h3>Transport &amp; travel</h3>
+                <p>All packages exclude transport costs. Travel is quoted separately based on the shoot location and included in your confirmation before you commit.</p>
+            </div>
+            <div class="policy-block">
+                <h3>Delivery &amp; turnaround</h3>
+                <p>Edited images are delivered via a private online gallery. Standard turnaround times are agreed before your shoot. A rush-delivery option is available for an additional fee. Raw, unedited files are not included unless agreed upfront.</p>
+            </div>
+            <div class="policy-block">
+                <h3>Image usage &amp; rights</h3>
+                <p>Shot by A retains copyright of all images. You're granted full personal usage rights to share and print your gallery. Shot by A may feature images for portfolio and social media use unless you request otherwise in writing before the shoot.</p>
+            </div>
+            <div class="policy-block">
+                <h3>Conduct on the day</h3>
+                <p>To keep every session enjoyable and safe, we ask for mutual respect on set. Shot by A reserves the right to end a session early in cases of unsafe or abusive behaviour, with no refund.</p>
+            </div>
+            <div style="text-align:center; margin-top:26px;">
+                <a href="#book" class="btn btn-red" data-open-booking>Got it — book a shoot</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ============================================================ CONTACT ============================================================ -->
+<div class="view" id="view-contact" data-view="contact">
+    <div class="hero hero-sub-page">
+        <div class="paint-frame shieldable">
+            <img src="assets/hero-contact.jpg" alt="Contact Shot by A"
+                 onerror="this.closest('.paint-frame').style.background='linear-gradient(135deg,#780000,#630606)'; this.style.display='none';">
+            <div class="hero-overlay">
+                <h1>Get in touch</h1>
+                <p class="hero-sub">Tell me about your shoot — I'd love to hear from you.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="wrap">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <span class="eyebrow">Send a message</span>
+                    <div class="field"><label for="cName">Your name</label><input type="text" id="cName" placeholder="Jane Doe" autocomplete="name"></div>
+                    <div class="field"><label for="cEmail">Your email</label><input type="email" id="cEmail" placeholder="jane@email.com" autocomplete="email"></div>
+                    <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" rows="5" placeholder="Date, location, and what you'd like covered..."></textarea></div>
+                    <p class="field-err" id="cErr"></p>
+                    <div class="booking-actions">
+                        <button class="booking-btn email" id="cEmailBtn"><span id="cEmailLabel">Send message</span></button>
+                        <button class="booking-btn whatsapp" id="cWaBtn">Message on WhatsApp</button>
+                    </div>
+                    <p class="booking-note">Sending adds you to the Shot by A mailing list for booking updates. WhatsApp opens a chat directly.</p>
+                </div>
+                <div class="contact-card">
+                    <span class="eyebrow">Details</span>
+                    <ul class="contact-list">
+                        <li><span class="lbl">Email</span><a href="mailto:amarah.rangraze@gmail.com">amarah.rangraze@gmail.com</a></li>
+                        <li><span class="lbl">Phone / WhatsApp</span><a href="tel:0844456657">084 445 6657</a></li>
+                        <li><span class="lbl">Instagram</span><a href="https://www.instagram.com/shotbya_photography" target="_blank" rel="noopener">@shotbya_photography</a></li>
+                        <li><span class="lbl">Based in</span><span class="line" style="color:var(--ink)">Johannesburg, South Africa</span></li>
+                        <li><span class="lbl">Hours</span><span class="line" style="color:var(--ink)">By appointment — flexible around your schedule</span></li>
+                    </ul>
+                    <div style="margin-top:26px;"><a href="#prices" data-nav class="btn btn-outline">See pricing</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+
+<!-- ============================================================ FOOTER ============================================================ -->
+<footer class="site-footer">
+    <div class="wrap">
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="Shot by A"
+                 onerror="this.onerror=null; this.src='assets/logo-cream-transparent.png';">
+            <span class="brand-fallback" style="display:none;">Shot by A</span>
+        </div>
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>Links</h4><div class="rule"></div>
+                <ul>
+                    <li><a href="#home" data-nav>Home</a></li>
+                    <li><a href="#gallery" data-nav>Gallery</a></li>
+                    <li><a href="#prices" data-nav>Prices</a></li>
+                    <li><a href="#policy" data-nav>Policy</a></li>
+                    <li><a href="#contact" data-nav>Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4><div class="rule"></div>
+                <ul>
+                    <li><a href="mailto:amarah.rangraze@gmail.com">amarah.rangraze@gmail.com</a></li>
+                    <li><a href="tel:0844456657">084 445 6657</a></li>
+                    <li><a href="#book" data-open-booking>Book a shoot</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow us</h4><div class="rule"></div>
+                <ul>
+                    <li><a href="https://www.instagram.com/shotbya_photography" target="_blank" rel="noopener">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Location</h4><div class="rule"></div>
+                <ul><li><span class="line">Johannesburg,<br>South Africa</span></li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> Shot by A. All rights reserved. · Sister brand of FOM Studios · Johannesburg, South Africa</p>
+        </div>
+    </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <button class="close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img id="lightbox-img" alt="">
+</div>
+
+<!-- BOOKING POPUP -->
+<div class="booking-overlay" id="bookingOverlay">
+    <div class="booking-modal">
+        <button class="booking-close" id="bookingClose" aria-label="Close">&times;</button>
+        <h3>Book a shoot</h3>
+        <p class="booking-sub">Tell me a bit about what you need, then send it however suits you.</p>
+        <div class="field"><label for="bName">Your name</label><input type="text" id="bName" placeholder="Jane Doe" autocomplete="name"></div>
+        <div class="field"><label for="bEmail">Your email</label><input type="email" id="bEmail" placeholder="jane@email.com" autocomplete="email"></div>
+        <div class="field"><label for="bMsg">Message</label><textarea id="bMsg" rows="4" placeholder="Date, location, and what you'd like covered..."></textarea></div>
+        <p class="field-err" id="bErr"></p>
+        <div class="booking-actions">
+            <button class="booking-btn email" id="bEmailBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 7 9-7" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                <span id="bEmailLabel">Send message</span>
+            </button>
+            <button class="booking-btn whatsapp" id="bWaBtn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.8 8.8 0 0 0 12 4a8.8 8.8 0 0 0-7.6 13.2L3 21l3.9-1.3A8.8 8.8 0 0 0 12 20a8.8 8.8 0 0 0 5.6-15.7zM12 18.3c-1.4 0-2.7-.4-3.9-1.1l-.3-.2-2.7.9.9-2.6-.2-.3A6.9 6.9 0 0 1 12 5.7a6.9 6.9 0 0 1 0 12.6zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.2-.3.2-.5.1-.6-.3-1.2-.7-1.7-1.2-.4-.4-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.2.2-.3.1-.5l-.6-1.4c-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.4.1-.5.2-.2.2-.7.7-.7 1.6 0 .9.7 1.9.8 2 .1.1 1.4 2.1 3.3 2.9 1.9.8 1.9.5 2.3.5.3 0 1.1-.4 1.2-.9.2-.4.2-.8.1-.9-.1-.1-.2-.2-.4-.3z"/></svg>
+                Message on WhatsApp
+            </button>
+        </div>
+        <p class="booking-note">Sending your message adds you to the Shot by A mailing list for booking updates. WhatsApp opens a chat directly.</p>
+    </div>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — update these three for go-live
+   ========================================================= */
+const WHATSAPP_NUMBER = '27844456657'; /* 084 445 6657 → SA intl (27) + drop leading 0. Verify WhatsApp-enabled. */
+const BREVO_ACTION_URL = '';           /* paste the Brevo form action URL; empty = falls back to mailto */
+const CONTACT_EMAIL = 'amarah.rangraze@gmail.com';
+
+/* Gallery images: add/remove filenames freely. Any that fail to load
+   are removed automatically, so it's safe to list more than you have. */
+const GALLERY_IMAGES = [
+    ['g1.jpg','Portrait'], ['g2.jpg','Events'], ['g3.jpg','Lifestyle'],
+    ['g4.jpg','Portrait'], ['g5.jpg','Brand'], ['g6.jpg','Events'],
+    ['g7.jpg','Lifestyle'], ['g8.jpg','Portrait'], ['g9.jpg','Brand'],
+    ['g10.jpg','Events'], ['g11.jpg','Lifestyle'], ['g12.jpg','Portrait']
+];
+
+/* Testimonials for the arch carousel */
+const TESTIMONIALS = [
+    ['"Amarah made the whole shoot feel effortless — and the photos completely blew us away."','Lerato M.','Portrait session'],
+    ['"Professional, warm and so easy to work with. Our event gallery was ready faster than we expected."','Thabo &amp; Sons','Event coverage'],
+    ['"Every single shot looked crisp and intentional. Exactly the brand imagery we needed."','Nandi K.','Brand shoot']
+];
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* =========================================================
+   NAV — transparent over the hero, solid once scrolled past
+   most of the hero. Re-evaluated on scroll and on view change
+   (each hero is a different height).
+   ========================================================= */
+const navShell = document.getElementById('navShell');
+function updateNav(){
+    const activeHero = document.querySelector('.view.active .paint-frame');
+    /* flip to solid once ~62% of the hero has scrolled past the top */
+    const trigger = activeHero ? Math.max(activeHero.offsetHeight * 0.62, 60) : 60;
+    navShell.classList.toggle('scrolled', window.scrollY > trigger);
+}
+window.addEventListener('scroll', updateNav, { passive:true });
+window.addEventListener('resize', updateNav);
+
+/* =========================================================
+   ROUTER — one file, five "pages". Nav links carry data-nav
+   and point to #home/#gallery/#prices/#policy/#contact.
+   Swaps the visible .view, syncs the URL hash, scrolls up,
+   and highlights the active link. Back/forward work.
+   ========================================================= */
+const VIEWS = ['home','gallery','prices','policy','contact'];
+function showView(name, push){
+    if(!VIEWS.includes(name)) name = 'home';
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const el = document.getElementById('view-'+name);
+    if(el) el.classList.add('active');
+    document.querySelectorAll('[data-nav]').forEach(a=>{
+        const target = (a.getAttribute('href')||'').replace('#','');
+        a.classList.toggle('active', target === name);
+    });
+    if(push !== false && ('#'+name) !== location.hash){
+        history.pushState({view:name}, '', '#'+name);
+    }
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+    requestAnimationFrame(updateNav);
+}
+document.addEventListener('click', (e)=>{
+    const a = e.target.closest('[data-nav]');
+    if(!a) return;
+    e.preventDefault();
+    showView((a.getAttribute('href')||'#home').replace('#',''), true);
+    closeMenuFn();
+});
+window.addEventListener('popstate', ()=> showView((location.hash||'#home').replace('#',''), false));
+/* initial route */
+showView((location.hash||'#home').replace('#',''), false);
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+const scrim = document.getElementById('scrim');
+function openMenu(){ mobileMenu.classList.add('open'); scrim.classList.add('show'); }
+function closeMenuFn(){ mobileMenu.classList.remove('open'); scrim.classList.remove('show'); }
+navToggle.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', closeMenuFn);
+scrim.addEventListener('click', closeMenuFn);
+
+/* =========================================================
+   GALLERY — inject images, remove any that 404, click to zoom
+   ========================================================= */
+const galleryGrid = document.getElementById('galleryGrid');
+GALLERY_IMAGES.forEach(([src,cap])=>{
+    const item = document.createElement('div');
+    item.className = 'g-item shieldable';
+    const img = document.createElement('img');
+    img.src = 'assets/'+src; img.alt = 'Shot by A — '+cap; img.loading = 'lazy';
+    img.onerror = ()=> item.remove();
+    /* bind to the item (above the ::after protection shield) so the tap
+       still opens the lightbox while the shield blocks save/drag */
+    item.addEventListener('click', ()=> openLightbox(img.src));
+    item.appendChild(img);
+    galleryGrid.appendChild(item);
+});
+
+/* home mini-strip reuses the first few gallery images if present is optional — skipped to keep home light */
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+document.getElementById('lightboxClose').addEventListener('click', ()=> lightbox.classList.remove('show'));
+lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.classList.remove('show'); });
+function openLightbox(src){ lightboxImg.src = src; lightbox.classList.add('show'); }
+
+/* =========================================================
+   TESTIMONIAL CAROUSEL (arch section)
+   ========================================================= */
+const tQuote = document.getElementById('testiQuote');
+const tWho = document.getElementById('testiWho');
+const tRole = document.getElementById('testiRole');
+const tDots = document.getElementById('testiDots');
+let tIdx = 0, tTimer;
+function renderTesti(i){
+    const [q,w,r] = TESTIMONIALS[i];
+    tQuote.innerHTML = q; tWho.innerHTML = w; tRole.innerHTML = r;
+    [...tDots.children].forEach((d,di)=> d.classList.toggle('active', di===i));
+    tIdx = i;
+}
+TESTIMONIALS.forEach((_,i)=>{
+    const b = document.createElement('button');
+    b.setAttribute('aria-label','Testimonial '+(i+1));
+    b.addEventListener('click', ()=>{ renderTesti(i); restartTesti(); });
+    tDots.appendChild(b);
+});
+function nextTesti(){ renderTesti((tIdx+1)%TESTIMONIALS.length); }
+function restartTesti(){ clearInterval(tTimer); tTimer = setInterval(nextTesti, 6000); }
+renderTesti(0); restartTesti();
+
+/* =========================================================
+   BOOKING POPUP + CONTACT FORM  (shared submit logic)
+   ========================================================= */
+const bookingOverlay = document.getElementById('bookingOverlay');
+document.getElementById('bookingClose').addEventListener('click', closeBooking);
+bookingOverlay.addEventListener('click', e=>{ if(e.target===bookingOverlay) closeBooking(); });
+document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){ closeBooking(); lightbox.classList.remove('show'); closeMenuFn(); }
+});
+document.querySelectorAll('[data-open-booking]').forEach(btn=>{
+    btn.addEventListener('click', e=>{ e.preventDefault(); openBooking(); });
+});
+function openBooking(){ bookingOverlay.classList.add('show'); document.getElementById('bName').focus(); }
+function closeBooking(){ bookingOverlay.classList.remove('show'); }
+
+function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+/* Submit silently to Brevo via hidden iframe (no page nav, no mail app).
+   If BREVO_ACTION_URL is empty, falls back to opening a mailto draft. */
+function submitLead(fields){
+    return new Promise((resolve)=>{
+        if(!BREVO_ACTION_URL){
+            const body = encodeURIComponent((fields.MESSAGE||'') + '\n\nFrom: ' + (fields.EMAIL||''));
+            window.location.href = 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('Shot by A — booking enquiry')+'&body='+body;
+            setTimeout(resolve, 300); return;
+        }
+        const name = 'lead-'+Date.now();
+        const iframe = document.createElement('iframe'); iframe.name=name; iframe.style.display='none'; document.body.appendChild(iframe);
+        const form = document.createElement('form'); form.method='POST'; form.action=BREVO_ACTION_URL; form.target=name; form.style.display='none';
+        const data = {...fields, email_address_check:'', locale:'en'};
+        Object.keys(data).forEach(k=>{ const i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=data[k]; form.appendChild(i); });
+        document.body.appendChild(form); form.submit();
+        setTimeout(()=>{ resolve(); form.remove(); iframe.remove(); }, 900);
+    });
+}
+
+/* wire a name/email/message trio + its two buttons */
+function wireForm(cfg){
+    const name=document.getElementById(cfg.name), email=document.getElementById(cfg.email),
+          msg=document.getElementById(cfg.msg), err=document.getElementById(cfg.err),
+          emailBtn=document.getElementById(cfg.emailBtn), label=document.getElementById(cfg.label),
+          waBtn=document.getElementById(cfg.waBtn);
+    function buildText(){
+        const n=name.value.trim(), m=msg.value.trim();
+        let t = m || "Hi Shot by A, I'd like to book a shoot.";
+        if(n) t = `Hi Shot by A, I'm ${n}. ${m || "I'd like to book a shoot."}`;
+        return t;
+    }
+    emailBtn.addEventListener('click', async ()=>{
+        err.textContent='';
+        if(!name.value.trim()){ err.textContent='Please enter your name.'; name.focus(); return; }
+        if(!isValidEmail(email.value.trim())){ err.textContent='Please enter a valid email address.'; email.focus(); return; }
+        if(!msg.value.trim()){ err.textContent='Let me know a bit about what you need.'; msg.focus(); return; }
+        emailBtn.disabled=true; label.textContent='Sending…';
+        await submitLead({ EMAIL:email.value.trim(), MESSAGE:`From ${name.value.trim()}: ${msg.value.trim()}` });
+        emailBtn.classList.add('sent'); label.textContent='Sent ✓';
+        setTimeout(()=>{ emailBtn.disabled=false; emailBtn.classList.remove('sent'); label.textContent=cfg.labelText;
+            name.value=''; email.value=''; msg.value=''; if(cfg.closeAfter) closeBooking(); }, 1800);
+    });
+    waBtn.addEventListener('click', ()=>{
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildText())}`;
+        window.open(url,'_blank');
+    });
+}
+wireForm({ name:'bName', email:'bEmail', msg:'bMsg', err:'bErr', emailBtn:'bEmailBtn', label:'bEmailLabel', waBtn:'bWaBtn', labelText:'Send message', closeAfter:true });
+wireForm({ name:'cName', email:'cEmail', msg:'cMsg', err:'cErr', emailBtn:'cEmailBtn', label:'cEmailLabel', waBtn:'cWaBtn', labelText:'Send message', closeAfter:false });
+
+/* =========================================================
+   IMAGE PROTECTION (deterrent) — block right-click / drag /
+   long-press save on images site-wide.
+   ========================================================= */
+document.addEventListener('contextmenu', e=>{ if(e.target.tagName==='IMG') e.preventDefault(); });
+document.addEventListener('dragstart', e=>{ if(e.target.tagName==='IMG') e.preventDefault(); });
+</script>
+
+<!-- ============================================================
+     COOKIE CONSENT + GA4 LOADER
+     GA4 (window.SBA_GA_ID) only loads after the visitor accepts,
+     and only if an ID is set — no tracking cookies before consent.
+     Choice remembered in localStorage.
+     ============================================================ -->
+<div id="cookieConsent" class="cookie-consent" style="display:none;">
+    <p>We use cookies for analytics, to understand how visitors use this site. <a href="#policy" data-nav>Learn more</a></p>
+    <div class="cookie-consent-actions">
+        <button id="cookieDecline" class="cookie-btn outline">Decline</button>
+        <button id="cookieAccept" class="cookie-btn filled">Accept</button>
+    </div>
+</div>
+<style>
+.cookie-consent{ position:fixed; left:16px; right:16px; bottom:16px; z-index:3000; max-width:480px; margin:0 auto;
+    background:var(--bg-pill); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+    box-shadow:0 12px 40px rgba(0,0,0,.15); font-family:var(--font-sub); }
+.cookie-consent p{ font-size:13px; color:var(--ink-soft); margin-bottom:14px; line-height:1.5; }
+.cookie-consent p a{ color:var(--accent); font-weight:600; }
+.cookie-consent-actions{ display:flex; gap:8px; }
+.cookie-btn{ flex:1; border-radius:999px; padding:10px 14px; font-size:13px; font-weight:700; cursor:pointer;
+    border:1px solid var(--ink); background:transparent; color:var(--ink); transition:.2s ease; font-family:var(--font-sub); }
+.cookie-btn.filled{ background:var(--dark-red); color:#fff; border-color:var(--dark-red); }
+.cookie-btn:hover{ opacity:.85; }
+</style>
+<script>
+(function(){
+    function loadGA(){
+        if(!window.SBA_GA_ID || window.__sbaGaLoaded) return;
+        window.__sbaGaLoaded = true;
+        var s=document.createElement('script'); s.async=true;
+        s.src='https://www.googletagmanager.com/gtag/js?id='+window.SBA_GA_ID;
+        document.head.appendChild(s);
+        gtag('js', new Date()); gtag('config', window.SBA_GA_ID);
+    }
+    var box=document.getElementById('cookieConsent');
+    var choice=localStorage.getItem('sba_cookie_consent');
+    if(choice==='accepted'){ loadGA(); }
+    else if(choice!=='declined' && window.SBA_GA_ID){ box.style.display='block'; }
+    document.getElementById('cookieAccept').addEventListener('click', function(){
+        localStorage.setItem('sba_cookie_consent','accepted'); box.style.display='none'; loadGA();
+    });
+    document.getElementById('cookieDecline').addEventListener('click', function(){
+        localStorage.setItem('sba_cookie_consent','declined'); box.style.display='none';
+    });
+})();
+</script>
+
+</body>
+</html>
